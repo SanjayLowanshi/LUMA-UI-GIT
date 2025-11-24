@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// app/src/App.tsx
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+// helper to read CSS variable value by name
+function cssVar(name: string) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
-export default App
+export default function App() {
+  // simple list of variables we want to inspect
+  const vars = [
+    "--color-primary",
+    "--color-surface",
+    "--color-text",
+    "--space-4",
+    "--radius-md",
+    "--shadow-sm"
+  ];
+
+  return (
+    <main className="container" style={{ paddingTop: "var(--space-5)" }}>
+      <h1 className="h1">Luma UI — Tokens Demo</h1>
+
+      <p style={{ marginBottom: "var(--space-4)" }}>
+        This demo reads CSS variables from <code>:root</code>. Useful to verify token values quickly.
+      </p>
+
+      <div className="token-grid" aria-live="polite">
+        {vars.map((v) => (
+          <div key={v} className="token-card" role="region" aria-label={v}>
+            <div style={{ fontSize: "var(--type-sm-size)", color: "var(--color-muted)", marginBottom: "var(--space-2)" }}>
+              {v}
+            </div>
+            <div style={{ fontWeight: 600, fontSize: "var(--type-md-size)" }}>
+              {cssVar(v) || "—"}
+            </div>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}
