@@ -1,0 +1,111 @@
+/* app/src/styles/global.scss
+   Global styles for Luma UI demo app.
+   This file imports token variables (via compiled CSS variables)
+   and adds base resets, font import and utility classes.
+*/
+
+/* Import token index from packages/core — in a real build you'd compile core/index.scss to CSS and import */
+/* For simplicity during development we can copy the :root compiled CSS into this file (or import compiled CSS). */
+
+/* Option A: paste compiled :root block from packages/core/src/index.scss output here
+   (this makes local dev immediate without a Sass build pipeline)
+*/
+
+/* Example compiled :root (paste once) */
+:root {
+  --color-primary: #0066cc;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-muted: #6b7280;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  --space-0: 0;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  --radius-none: 0;
+  --radius-sm: .125rem;
+  --radius-md: .375rem;
+  --radius-lg: .75rem;
+  --radius-pill: 9999px;
+
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px rgba(16,24,40,0.04);
+  --shadow-md: 0 4px 8px rgba(16,24,40,0.08);
+  --shadow-lg: 0 10px 20px rgba(16,24,40,0.12);
+
+  --type-xs-size: .75rem;
+  --type-xs-weight: 400;
+  --type-sm-size: .875rem;
+  --type-sm-weight: 400;
+  --type-base-size: 1rem;
+  --type-base-weight: 400;
+  --type-md-size: 1.125rem;
+  --type-md-weight: 500;
+  --type-lg-size: 1.25rem;
+  --type-lg-weight: 600;
+  --type-xl-size: 1.5rem;
+  --type-xl-weight: 700;
+  --type-2xl-size: 1.75rem;
+  --type-2xl-weight: 700;
+
+  --color-on-surface: var(--color-text);
+  --focus-ring-color: rgba(0,102,204,0.18);
+}
+
+/* Import font from Google - general sans (example: Inter) */
+/* In production you may preload fonts or host them locally. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* Base reset + sensible defaults */
+* { box-sizing: border-box; }
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--color-text);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.4;
+  font-size: var(--type-base-size);
+}
+
+/* Small utility classes */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+.h1 {
+  font-size: var(--type-2xl-size);
+  font-weight: var(--type-2xl-weight);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+}
+
+/* token card for demo */
+.token-card {
+  background: linear-gradient(0deg, rgba(0,0,0,0.02), transparent);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(15,23,42,0.03);
+}
+
+/* accessible focus ring example using CSS variable */
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus-ring-color);
+}
