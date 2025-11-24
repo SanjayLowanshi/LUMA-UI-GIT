@@ -1,0 +1,69 @@
+// packages/core/src/_tokens.scss
+// Luma UI tokens - minimal and commented for newbies.
+// Use: @use 'tokens' to access token maps in other SCSS files.
+
+// -------------------------
+// Color tokens (semantic)
+// -------------------------
+$luma-colors: (
+  // primary - main brand color
+  primary:    #0066cc,
+  // surface - app background / cards
+  surface:    #ffffff,
+  // text - main content text
+  text:       #0f172a,
+  // muted - secondary text / placeholder
+  muted:      #6b7280,
+  // success / danger - feedback intents
+  success:    #16a34a,
+  danger:     #dc2626
+) !default;
+
+// -------------------------
+// Spacing scale
+// (numbers map to usable spacing values)
+// -------------------------
+$luma-space: (
+  0: 0,
+  1: .25rem,  // 4px
+  2: .5rem,   // 8px
+  3: .75rem,  // 12px
+  4: 1rem,    // 16px
+  5: 1.5rem,  // 24px
+  6: 2rem     // 32px
+) !default;
+
+// -------------------------
+// Border radii
+// -------------------------
+$luma-radii: (
+  none: 0,
+  sm: .125rem,
+  md: .375rem,
+  lg: .75rem,
+  pill: 9999px
+) !default;
+
+// -------------------------
+// Shadows
+// -------------------------
+$luma-shadows: (
+  none: none,
+  sm: 0 1px 2px rgba(16,24,40,0.04),
+  md: 0 4px 8px rgba(16,24,40,0.08),
+  lg: 0 10px 20px rgba(16,24,40,0.12)
+) !default;
+
+// -------------------------
+// Typography scale (shadcn-inspired)
+// We provide font-size and font-weight tokens for a consistent scale.
+// -------------------------
+$luma-type-scale: (
+  xs: (size: .75rem,  weight: 400),  // small helper text
+  sm: (size: .875rem, weight: 400),
+  base: (size: 1rem,   weight: 400), // body text
+  md: (size: 1.125rem, weight: 500),
+  lg: (size: 1.25rem,  weight: 600),
+  xl: (size: 1.5rem,   weight: 700),
+  '2xl': (size: 1.75rem, weight: 700)
+) !default;

@@ -1,0 +1,51 @@
+// packages/core/src/index.scss
+@use "sass:map";
+@use "./_tokens" as tokens; // import our token maps
+
+// Forward tokens so other packages can import them via @use "packages/core/src/index";
+@forward "./_tokens";
+
+// -------------------------
+// Export token maps as CSS variables in :root
+// Naming conventions:
+//  --color-<name>
+//  --space-<key>
+//  --radius-<name>
+//  --shadow-<name>
+//  --type-<name>-size
+//  --type-<name>-weight
+// -------------------------
+:root {
+  /* Colors */
+  @each $name, $val in tokens.$luma-colors {
+    /* create variables like --color-primary: #0066cc; */
+    --color-#{ $name }: #{ $val };
+  }
+
+  /* Spacing */
+  @each $k, $v in tokens.$luma-space {
+    --space-#{ $k }: #{ $v };
+  }
+
+  /* Radii */
+  @each $name, $val in tokens.$luma-radii {
+    --radius-#{ $name }: #{ $val };
+  }
+
+  /* Shadows */
+  @each $name, $val in tokens.$luma-shadows {
+    --shadow-#{ $name }: #{ $val };
+  }
+
+  /* Type scale -> create separate size & weight variables */
+  @each $name, $map in tokens.$luma-type-scale {
+    $size: map.get($map, size);
+    $weight: map.get($map, weight);
+    --type-#{ $name }-size: #{ $size };
+    --type-#{ $name }-weight: #{ $weight };
+  }
+
+  /* useful derived vars */
+  --color-on-surface: var(--color-text);
+  --focus-ring-color: rgba(0,102,204,0.18);
+}
