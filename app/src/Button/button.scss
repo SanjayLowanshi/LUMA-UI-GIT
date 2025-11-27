@@ -1,0 +1,83 @@
+/* button.scss
+   Token-driven Button styles for Luma UI.
+   Uses CSS variables from :root (defined in global.scss / tokens).
+   Accessible focus, primary/ghost/destructive variants, sizes and disabled state.
+*/
+
+/* Base button reset - keep minimal */
+.luma-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: calc(var(--space-2)) calc(var(--space-3));
+  font-size: var(--type-base-size);
+  font-weight: var(--type-base-weight);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--shadow-none);
+  transition: background .12s ease, transform .06s ease, box-shadow .12s ease, opacity .12s ease;
+  user-select: none;
+}
+
+/* Primary variant (default) */
+.luma-btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: transparent;
+}
+.luma-btn--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.luma-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-none);
+}
+
+/* Ghost / outline variant */
+.luma-btn--ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: rgba(0,0,0,0.06);
+}
+.luma-btn--ghost:hover:not(:disabled) {
+  background: rgba(0,0,0,0.02);
+}
+
+/* Destructive variant */
+.luma-btn--danger {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+/* Sizes */
+.luma-btn--sm { padding: calc(var(--space-1)) calc(var(--space-2)); font-size: var(--type-sm-size); }
+.luma-btn--md { padding: calc(var(--space-2)) calc(var(--space-3)); font-size: var(--type-base-size); }
+.luma-btn--lg { padding: calc(var(--space-3)) calc(var(--space-4)); font-size: var(--type-lg-size); }
+
+/* Disabled state */
+.luma-btn:disabled,
+.luma-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Focus ring — accessible and token-driven */
+.luma-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus-ring-color);
+}
+
+/* Utility: icon-only button */
+.luma-btn--icon {
+  padding: calc(var(--space-2));
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-pill);
+}
